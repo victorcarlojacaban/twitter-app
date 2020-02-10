@@ -28,7 +28,7 @@
 		        	 	@if(auth()->user()->isNot($user) && !auth()->user()->isFollowing($user))
 		        	 	<div>
 		        	 		 <img src="{{ asset($user->avatar ?? 'no-image.png') }}" alt="{{ $user->first_name }}" style="width:100%;height: 120px;">
-				         	<a href="{{ route('user.show', $user) }}"> {{ $user->getFirstNameAndLastnameAttribute()}} </a>
+				         	<a href="{{ route('user.show', $user) }}"> {{ $user->getFirstNameAndLastnameAttribute()}} </a><br/>
 				            <a href="{{ route('user.follow', $user) }}" class="btn btn-success">Follow</a>
 				        <div>
 				      	<br/>
