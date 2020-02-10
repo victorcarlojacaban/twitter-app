@@ -2,7 +2,7 @@
 
 1: First download or clone it using
 
-   git clone git@github.com:techmahedy/laravel-vue-js-twitter-app.git
+   git clone https://github.com/victorcarlojacaban/twitter-app.git
 
 2: Type the following command: composer install
 
@@ -19,3 +19,7 @@
 8: Now you can check it by running 
 
    php artisan serve
+
+9: Access home vie http://localhost:8000/home
+10: Access user profile http://localhost:8000/users/{user firstname}
+11. Profile page http://localhost:8000/profile
