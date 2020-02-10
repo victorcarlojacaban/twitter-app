@@ -4,12 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Tweet;
 use App\Like;
+use App\Repositories\TweetRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
+    /** @var tweetRepo */
+    protected $tweetRepo;
+
+    /**
+     * @param TweetRepository $tweetRepo
+     */
+    public function __construct(TweetRepository $tweetRepo)
+    {
+        $this->tweetRepo = $tweetRepo;
+    }
+
     /**
      * Index page
      * 
@@ -22,33 +34,9 @@ class TweetController extends Controller
     {
         if (!$request->ajax()) abort( 404 );
 
-        $items = $tweet->whereIn('user_id', $request->user()->following()
-            ->pluck('users.id')
-            ->push($request->user()->id))
-            ->with('user')
-            ->orderBy('created_at', 'desc')
-            ->take($request->get('limit', 10));
-
-        if ($hashSearch = $request->hashSearch) {
-            $items->where('hash_tag', 'like', "%$hashSearch%")
-                ->orWhere('text', 'like', "%$hashSearch%");
-
-        }
-
-        $itemsInstance = $items->get();
-
-        // map check if user liked specific tweet
-        $itemsInstance->map(function ($tweet) {
-            $likedTweet = Like::where('tweet_id', '=', $tweet->id)
-                        ->where('user_id', '=', Auth::user()->id)
-                        ->first();
-
-            $tweet['liked'] = $likedTweet;
-
-            return $tweet;
-        });
+        $items = $this->tweetRepo->getTweets($request);
         
-        return ['items' => $itemsInstance];
+        return ['items' => $items];
     }
 
     /**
