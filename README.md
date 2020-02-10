@@ -21,5 +21,7 @@
    php artisan serve
 
 9: Access home vie http://localhost:8000/home
+
 10: Access user profile http://localhost:8000/users/{user firstname}
+
 11. Profile page http://localhost:8000/profile
