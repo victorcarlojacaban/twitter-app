@@ -4,9 +4,9 @@
 
    git clone https://github.com/victorcarlojacaban/twitter-app.git
 
-2: Type the following command: composer install
+2: Run command to install composer packages: composer install
 
-3: stall npm dependencies: npm install
+3: Install npm dependencies: npm install
 
 4: Start the watch: npm run watch
 
@@ -16,7 +16,7 @@
 
 7: Migrate the database: php artisan migrate
 
-8: Now you can check it by running 
+8: Launch your app
 
    php artisan serve
 
