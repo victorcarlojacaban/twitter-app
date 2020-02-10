@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Tweet;
-use App\Like;
 use App\Repositories\TweetRepository;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
